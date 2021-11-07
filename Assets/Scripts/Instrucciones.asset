@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee1355309820d0439f1791519958be3, type: 3}
+  m_Name: Instrucciones
+  m_EditorClassIdentifier: 
+  mensaje:
+  - ID: 0
+    dialogos: "Para mover la c\xE1mara, mueve el mouse en la direcci\xF3n deseada.\n\nPresiona
+      C para continuar."
+  - ID: 1
+    dialogos: "Para moverte por el escenario usa las teclas <br><b>W, A, S, D.</b>\n\n<b>W:</b>
+      Hacia adelante\n<b>S:</b> Hacia atr\xE1s\n<b>A:</b> Hacia la izquierda\n<b>D:</b>
+      Hacia la derecha\n\nPresiona C para continuar."
+  - ID: 2
+    dialogos: "Para tomar algunos objetos, debes acercarte a ellos, apuntar la c\xE1mara
+      y presionar la tecla **.\n\nPresiona C para continuar."
+  - ID: 3
+    dialogos: 'Puedes disparar con ciertos objetos. Toma uno con el que puedas disparar
+      y presiona la tecla F.
+
+
+      Presiona C para continuar.'
+  - ID: 4
+    dialogos: "El tutorial ha concluido. En un momento iniciar\xE1 el juego..."
