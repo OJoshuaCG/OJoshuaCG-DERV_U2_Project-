@@ -10,15 +10,14 @@ public class TakeObject : MonoBehaviour
     public bool rayShowed;
     public GameObject reference;
     GameObject temp;
-    float camX,camY,camZ;
+    float camX, camY, camZ;
 
-    public Text instruccion;
-    
+    float distancia = 3.0f;
     bool taking = false;
 
     void Start()
     {
-        instruccion.text = "";
+
     }
 
     // Update is called once per frame
@@ -28,74 +27,79 @@ public class TakeObject : MonoBehaviour
         camY = reference.transform.position.y;
         camZ = reference.transform.position.z;
 
-        float distancia = 2.0f;
+
         Vector3 origen = reference.transform.position;
         Vector3 direccion = transform.forward;
         float duracion = 0.1f;
- 
+
         RaycastHit hit;
         //Se emite el rayo y se comprueba la colision
-        if(Physics.Raycast(origen, direccion ,out hit, distancia)) {
+        if (Physics.Raycast(origen, direccion, out hit, distancia))
+        {
+
             Debug.Log(hit.collider.tag);
-            if(hit.collider.tag.Equals("spawn")) {
-                Debug.DrawRay(reference.transform.position,transform.forward * distancia,Color.green,duracion);
+            if (hit.collider.tag.Equals("talkeable"))
+            {
+                Debug.DrawRay(reference.transform.position, transform.forward * distancia, Color.green, duracion);
 
-                string nombre = hit.collider.gameObject.name;
-                temp = GameObject.Find(nombre);
-                //Destroy(temp);
-                if(!taking)instruccion.text = "Left-Click to take";
+                //string nombre = hit.collider.gameObject.name;
 
-                if (Input.GetMouseButtonDown(0)) {
-                    Debug.Log("Click Izquierdo");
-                    instruccion.text = "Left-click to drop";
-                    taking = true;                    
-                } 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    //Click Izquierdo para interactuar
+                    GameObject canvasDialog = transform.GetChild(0).gameObject;
+                    canvasDialog = canvasDialog.transform.GetChild(1).gameObject;
+                    canvasDialog.SetActive(true);
+                    Debug.Log(canvasDialog.name);
+                }
 
+            }
+
+        }
+        else
+        {
+
+            Debug.DrawRay(reference.transform.position, transform.forward * distancia, Color.red, duracion);
+
+            /*
+            if (taking)
+            {
                 
-        
             }
-            
-        } else {
-            
-            Debug.DrawRay(reference.transform.position,transform.forward * distancia,Color.red,duracion);
-            
-            if(taking){
-                if (Input.GetMouseButtonDown(0)) taking = false;
-                instruccion.text = "Left-click to drop";
-            } else {
-                instruccion.text = "";        
+            else
+            {
+                instruccion.text = "";
             }
-            
+            */
         }
 
-        if(temp!=null && taking) {
-            Vector3 pos = reference.transform.position;
-            temp.transform.LookAt(pos);
-       } else taking = false;
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
         //Gizmos.DrawCube(transform.position, new Vector3(area_Size,0.1f,area_Size));
-         
+
         camX = reference.transform.position.x;
         camY = reference.transform.position.y;
         camZ = reference.transform.position.z;
 
         // Convert the local coordinate values into world
         // coordinates for the matrix transformation.
-       
-        if(guizmoShowed) {
+
+        if (guizmoShowed)
+        {
 
             Gizmos.DrawCube(
-            new Vector3(camX,camY,camZ+1),
-            new Vector3(0.1f,0.1f,2));
+            new Vector3(camX, camY, camZ + 1),
+            new Vector3(0.1f, 0.1f, 2));
         }
 
-        if(rayShowed){
-            Gizmos.DrawRay(reference.transform.position, transform.forward * 2.0f);
+        if (rayShowed)
+        {
+            Gizmos.DrawRay(reference.transform.position, transform.forward * distancia);
         }
-        
+
 
         //Gizmos.DrawMesh(spawnerMesh, transform.position, Quaternion.identity,Vector3.one); // posicion, rotacion,escala
 
