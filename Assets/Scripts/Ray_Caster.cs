@@ -12,14 +12,14 @@ public class Ray_Caster : MonoBehaviour
     GameObject temp;
     float camX, camY, camZ;
 
-    float distancia = 3.0f;
+    float distancia = 4.0f;
     bool taking = false;
 
     [SerializeField]
     GameObject canvasDialogo;
     void Start()
     {
-        //canvasDialogo = GameObject.Find("canvasDialogoos"); //.GetComponent<Canvas>();
+        
     }
 
     // Update is called once per frame
@@ -58,17 +58,22 @@ public class Ray_Caster : MonoBehaviour
                                                 talkObject.transform.position.y + 2, 
                                                 talkObject.transform.position.z);
                     
-                    canvasDialogo.transform.rotation = Quaternion.Euler(0, talkObject.transform.rotation.y + 180, 0);
-                    //canvasDialogo.transform.rotation.y = talkObject.transform.rotation.y + 180;
-                    //Quaternion quaternion = new Quaternion(0f, talkObject.transform.rotation.y + 180f, 0f, 1);
+                    //canvasDialogo.transform.rotation = Quaternion.Euler(0, talkObject.transform.rotation.y + 180, 0);
+                    //Quaternion quaternion = new Quaternion(0f, talkObject.transform.rotation.y * 180f, 0f, 1);
+                    //canvasDialogo.transform.rotation = quaternion;                    
                     
                     canvasDialogo.SetActive(true); // No funciona D:
                     
                     // Mover canvas dialogo arriba del personaje con quien esta hablando
                     canvasDialogo.transform.position = vector;
-                    //canvasDialogo.transform.rotation = quaternion;                    
+                    canvasDialogo.transform.rotation = talkObject.transform.rotation;
+                    
                 }
             }
+        }
+        else
+        {
+            Debug.DrawRay(camReference.transform.position, transform.forward * distancia, Color.red, duracion);
         }        
     }
     
