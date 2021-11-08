@@ -57,11 +57,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-<<<<<<< HEAD
-Packages/manifest.json
-Packages/packages-lock.json
-=======
-UserSettings/EditorUserSettings.asset
-UserSettings/EditorUserSettings.asset
->>>>>>> ZUB
-ProjectSettings/ProjectVersion.txt
