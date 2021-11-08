@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerGame : MonoBehaviour
+public class Ray_Caster : MonoBehaviour
 {
     
     public bool guizmoShowed;
     public bool rayShowed;
-    public GameObject reference;
+    public GameObject camReference;
     GameObject temp;
     float camX, camY, camZ;
 
@@ -16,10 +16,10 @@ public class PlayerGame : MonoBehaviour
     bool taking = false;
 
     [SerializeField]
-    GameObject canvasDialog;
+    GameObject canvasDialogo;
     void Start()
     {
-        //canvasDialog = GameObject.Find("CanvasDialogos"); //.GetComponent<Canvas>();
+        //canvasDialogo = GameObject.Find("canvasDialogoos"); //.GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -29,11 +29,11 @@ public class PlayerGame : MonoBehaviour
     }
 
     private void rayCast(){
-        camX = reference.transform.position.x;
-        camY = reference.transform.position.y;
-        camZ = reference.transform.position.z;
+        camX = camReference.transform.position.x;
+        camY = camReference.transform.position.y;
+        camZ = camReference.transform.position.z;
 
-        Vector3 origen = reference.transform.position;
+        Vector3 origen = camReference.transform.position;
         Vector3 direccion = transform.forward;
         float duracion = 0.1f;
 
@@ -44,7 +44,7 @@ public class PlayerGame : MonoBehaviour
             Debug.Log(hit.collider.tag);
             if (hit.collider.tag.Equals("talkeable"))
             {   
-                Debug.DrawRay(reference.transform.position, transform.forward * distancia, Color.green, duracion);
+                Debug.DrawRay(camReference.transform.position, transform.forward * distancia, Color.green, duracion);
                 //string nombre = hit.collider.gameObject.name;
 
                 if (Input.GetMouseButtonDown(0))
@@ -57,13 +57,16 @@ public class PlayerGame : MonoBehaviour
                     Vector3 vector = new Vector3(talkObject.transform.position.x, 
                                                 talkObject.transform.position.y + 2, 
                                                 talkObject.transform.position.z);
-                    Quaternion quaternion = new Quaternion(0f, talkObject.transform.rotation.y, 0f, 1f);
                     
-                    canvasDialog.SetActive(true); // No funciona D:
+                    canvasDialogo.transform.rotation = Quaternion.Euler(0, talkObject.transform.rotation.y + 180, 0);
+                    //canvasDialogo.transform.rotation.y = talkObject.transform.rotation.y + 180;
+                    //Quaternion quaternion = new Quaternion(0f, talkObject.transform.rotation.y + 180f, 0f, 1);
+                    
+                    canvasDialogo.SetActive(true); // No funciona D:
                     
                     // Mover canvas dialogo arriba del personaje con quien esta hablando
-                    canvasDialog.transform.position = vector;
-                    canvasDialog.transform.rotation = quaternion;                    
+                    canvasDialogo.transform.position = vector;
+                    //canvasDialogo.transform.rotation = quaternion;                    
                 }
             }
         }        
