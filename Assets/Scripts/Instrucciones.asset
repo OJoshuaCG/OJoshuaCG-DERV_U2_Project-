@@ -21,8 +21,12 @@ MonoBehaviour:
       Hacia adelante\n<b>S:</b> Hacia atr\xE1s\n<b>A:</b> Hacia la izquierda\n<b>D:</b>
       Hacia la derecha\n\nPresiona C para continuar."
   - ID: 2
-    dialogos: "Para tomar algunos objetos, debes acercarte a ellos, apuntar la c\xE1mara
-      y presionar la tecla **.\n\nPresiona C para continuar."
+    dialogos: 'Para tomar algunos objetos o interactuar con ellos, debes acercarte
+      a ellos, apuntar la mira y presionar click izquierdo.
+
+
+      Presiona C para
+      continuar.'
   - ID: 3
     dialogos: 'Puedes disparar con ciertos objetos. Toma uno con el que puedas disparar
       y presiona la tecla F.

@@ -17,16 +17,14 @@ public class Dialogo_SO : MonoBehaviour
 
     bool inicio = false;
 
+    bool cambioEscena = false;
+
     // Start is called before the first frame update
     void Start()
     {
         indexActual = -1;
 
         texto.text = "Estás por empezar el tutorial... Presiona X para continuar";
-
-        int nummensajes = dialogo.getCantidadMensajes();
-
-        Debug.Log(nummensajes);
     }
 
     // Update is called once per frame
@@ -47,6 +45,11 @@ public class Dialogo_SO : MonoBehaviour
             }
         }
 
+        if (indexActual == dialogo.getCantidadMensajes() - 1)
+        {
+            cambioEscena = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.C) && inicio == true) // Adelante
         {
 
@@ -59,19 +62,13 @@ public class Dialogo_SO : MonoBehaviour
                 texto.maxVisibleCharacters = 0;
                 StopAllCoroutines();
                 StartCoroutine("mostrarTexto");
-
-                
             }
 
-            /*
-            if (indexActual == dialogo.getCantidadMensajes() - 1)
-            {
-                StopAllCoroutines();
-                StartCoroutine("TimeBurner");
-                //SceneManager.LoadScene("Sample Scene");
-                Debug.Log("Cambio de escena...");
-            }
-            */
+        }
+
+        if(Input.GetKeyDown(KeyCode.C) && cambioEscena == true)
+        {
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -104,10 +101,5 @@ public class Dialogo_SO : MonoBehaviour
 
         Debug.Log("Corrutina detenida");
         StopCoroutine("mostrarTexto");
-    }
-
-    IEnumerator TimeBurner()
-    {
-        yield return new WaitForSeconds(5.0f);
     }
 }

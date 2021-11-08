@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee1355309820d0439f1791519958be3, type: 3}
+  m_Name: Interacciones
+  m_EditorClassIdentifier: 
+  mensaje:
+  - ID: 0
+    dialogos: Hola, soy una ardilla... Miau
+  - ID: 1
+    dialogos: "Yo soy una ardilla pero estoy en contra de los constructos sociales
+      impuestos por la sociedad que demonizan el que me identifique como \xE1guila.
+      Soy un \xE1guila y espero ser tratada como tal."
+  - ID: 2
+    dialogos: 'Soy una ardilla exploradora. Squeaker, squeaking, squeak, squeakery. '
+  - ID: 3
+    dialogos: "Incl\xEDnate mortal, est\xE1s frente al pr\xEDncipe de Asgard. Soy
+      la THOR-tuga"
+  - ID: 0
+    dialogos: "\xC9rase una vez, yo, Zhuangzi, so\xF1\xE9 que era una mariposa, revoloteando
+      de aqu\xED para all\xE1, a todos los efectos una mariposa. Ahora no s\xE9 si
+      yo era entonces un hombre so\xF1ando que era una mariposa, o si ahora soy una
+      mariposa, so\xF1ando que soy un hombre"
