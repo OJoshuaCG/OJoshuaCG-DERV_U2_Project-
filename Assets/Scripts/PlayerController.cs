@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject objDirectionRC;
 
-
     bool canThrow = false;
     bool canTalk = false;
     bool canDrop = false;
+    bool canEnter = false;
     bool canMove = true;
     
-    bool missionFinished = false;
+    [SerializeField]
+    bool missionFinished = true;
     // 0 = ninguna mision   1 = tomar hongos    2 = ir a la cueva
     [SerializeField]
     short mission = 0;
@@ -38,13 +39,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         rayCast();
@@ -59,8 +60,7 @@ public class PlayerController : MonoBehaviour
         camY = camReference.transform.position.y;
         camZ = camReference.transform.position.z;
         Vector3 origen = camReference.transform.position;
-        Vector3 direccion = objDirectionRC.transform.forward;
-        float duracion = 0.1f;
+        Vector3 direccion = objDirectionRC.transform.forward;        
         RaycastHit hit;
         //Se emite el rayo y se comprueba la colision
         if (Physics.Raycast(origen, direccion, out hit, distancia))
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(hit.collider.tag);
             string tag = hit.collider.tag;
             string name = hit.collider.gameObject.name;
+
             if (hit.collider.tag.Equals("talkeable")){
                 textoCanvas.text = "Click derecho para interactuar";
                 canTalk = true;
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviour
                         missionFinished = true;
                     }
                 }
-            }
+            }            
             else{
                 if(!canTalk || !canDrop){
                     textoCanvas.text = "";
@@ -117,7 +118,18 @@ public class PlayerController : MonoBehaviour
         if(name.Equals("Mine Cave") && mission == 2 && !missionFinished){
             SceneManager.LoadScene(2);
             Vector3 vector = new Vector3(0, 2, -9);
+            this.transform.position = vector;  
+            canThrow = true;
+            canEnter = false;
+        }
+        if(name.Equals("Exit") && missionFinished){
+            SceneManager.LoadScene(1);
+            Vector3 vector = new Vector3(57, 2, 66);
+            Quaternion quaternion = new Quaternion(0, -90, 0, 1);
+            canThrow = false;
             this.transform.position = vector;
+            this.transform.rotation = quaternion;
+
         }
     }
 }

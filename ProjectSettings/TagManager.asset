@@ -11,6 +11,7 @@ TagManager:
   - TardillaTrans
   - Tardilla2
   - mission1
+  - mission2
   layers:
   - Default
   - TransparentFX
