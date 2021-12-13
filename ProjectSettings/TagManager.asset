@@ -8,6 +8,9 @@ TagManager:
   - Ttortuga
   - Tardilla
   - Tmariposa
+  - TardillaTrans
+  - Tardilla2
+  - mission1
   layers:
   - Default
   - TransparentFX
