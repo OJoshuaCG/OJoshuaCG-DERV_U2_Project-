@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public static PlayerController playCont;
 
     [SerializeField]
+    GameObject dialogController;
+
+    [SerializeField]
     TextMeshProUGUI textoCanvas;
     [SerializeField]
     GameObject camReference;
@@ -26,7 +29,7 @@ public class PlayerController : MonoBehaviour
     bool isTalking = false;
     
     [SerializeField]
-    bool missionFinished = true;
+    bool missionFinished = false;
     // 0 = ninguna mision   1 = tomar hongos    2 = ir a la cueva
     [SerializeField]
     short mission = 0;
@@ -82,39 +85,38 @@ public class PlayerController : MonoBehaviour
             if (tag.Equals("talkeable")){
                 textoCanvas.text = "Click izquierdo para interactuar";
                 canTalk = true;
+
+                /*
                 if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
                 {    
-                    canTalk = false; 
-                    isTalking = true;        
-                    // Buscar el objeto con quien esta hablando
-                    GameObject talkObject = GameObject.Find(name);
-                    
-                    Vector3 vector = new Vector3(talkObject.transform.position.x, 
-                                                talkObject.transform.position.y + 2, 
-                                                talkObject.transform.position.z);
-                    
-                    canvasDialogo.SetActive(true);
-                    
-                    // Mover canvas dialogo arriba del personaje con quien esta hablando
-                    canvasDialogo.transform.position = vector;
-                    canvasDialogo.transform.rotation = talkObject.transform.rotation;                    
-                    
-                }
+                    setDialogObj(name);                    
+                }*/
             }
-            else if (tag.Equals("mission1") && mission == 1 && !missionFinished){
-                textoCanvas.text = "Click izquierdo para tomar";   
-                canDrop = true;             
-                if (Input.GetMouseButtonDown(0))    // Click Izquierdo
-                {                      
-                    canDrop = false;
-                    // Buscar el objeto que tomo
-                    GameObject dropObject = GameObject.Find(name);                   
-                    Destroy(dropObject);
-                    contMush++;
-                    if(contMush == 5){
-                        //missionFinished = true;                        
-                        mission++;
-                        prepareMission2(true);
+            else if (tag.Equals("mission1") && missionFinished==false){
+                canTalk = true;
+                if(name.Contains("Mushroom") && mission == 1){
+                    textoCanvas.text = "Click izquierdo para tomar";   
+                    canDrop = true;             
+                    if (Input.GetMouseButtonDown(0))    // Click Izquierdo
+                    {                      
+                        canDrop = false;
+                        // Buscar el objeto que tomo
+                        GameObject dropObject = GameObject.Find(name);                   
+                        Destroy(dropObject);
+                        contMush++;
+                        if(contMush == 5){                            
+                            //mission++;
+                            missionFinished = true;
+                            // Desaparecemos las ardillas 
+                            //prepareMission2(true);
+                        }
+                    }
+                }
+                else{
+                    textoCanvas.text = "Click izquierdo para Interactuar";
+                    if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
+                    {
+                        setDialogObj(name);                    
                     }
                 }
             }  
@@ -129,15 +131,34 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if(tag.Equals("Untagged")) {
+            else if(tag.Equals("Finish")) {
                 textoCanvas.text = "";
                 
                 
             }
+            canvasDialogo.transform.LookAt(camReference.transform);
         }            
     }
 
     
+    private void setDialogObj(string name){
+        canTalk = false; 
+        isTalking = true;        
+        // Buscar el objeto con quien esta hablando
+        GameObject talkObject = GameObject.Find(name);
+        
+        Vector3 vector = new Vector3(talkObject.transform.position.x, 
+                                    talkObject.transform.position.y + 2, 
+                                    talkObject.transform.position.z);
+        
+        canvasDialogo.SetActive(true);
+        
+        //dialogController.GetComponent<GameObject>().GetComponent<Script>().
+        // Mover canvas dialogo arriba del personaje con quien esta hablando
+        canvasDialogo.transform.position = vector;
+        canvasDialogo.transform.rotation = talkObject.transform.rotation; 
+    }
+
 
     private void OnCollisionEnter(Collision other) {
         string name = other.gameObject.name;
@@ -175,16 +196,9 @@ public class PlayerController : MonoBehaviour
     public static bool getStateShoot(){
         return playCont.canShoot;
     }
-    
-    // public GameObject bullet;
-    // public GameObject spawner;
 
-    // // Update is called once per frame
-    // void listenKey(){
-    //     if(Input.GetKeyDown(KeyCode.F) && canShoot){
-    //         GameObject bull = Instantiate(bullet, spawner.transform.position, spawner.transform.rotation);
-    //         Destroy(bull, 3);
-    //     }       
-    // }
-    
+    public static bool getMissionState() {
+        return playCont.missionFinished;
+    }    
+
 }

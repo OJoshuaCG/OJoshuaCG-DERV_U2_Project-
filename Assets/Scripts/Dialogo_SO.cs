@@ -24,7 +24,7 @@ public class Dialogo_SO : MonoBehaviour
     {
         indexActual = -1;
 
-        texto.text = "Estás por empezar el tutorial... Presiona X para continuar";
+        texto.text = "\n Presiona X para continuar";
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class Dialogo_SO : MonoBehaviour
             cambioEscena = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && inicio == true) // Adelante
+        if (Input.GetKeyDown(KeyCode.C) && inicio == true && PlayerController.getMissionState() ) // Adelante
         {
 
             if (indexActual < dialogo.getCantidadMensajes() -1)
@@ -89,7 +89,7 @@ public class Dialogo_SO : MonoBehaviour
                 texto.maxVisibleCharacters += 1;
             }
 
-            Debug.Log("Ejecución Corrutina");
+            Debug.Log("Ejecuciï¿½n Corrutina");
             yield return new WaitForSeconds(0.05f);
 
             if(texto.maxVisibleCharacters == largo)
