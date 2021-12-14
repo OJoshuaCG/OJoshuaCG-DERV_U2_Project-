@@ -34,4 +34,4 @@ MonoBehaviour:
 
       Presiona C para continuar.'
   - ID: 4
-    dialogos: "El tutorial ha concluido. En un momento iniciar\xE1 el juego..."
+    dialogos: El tutorial ha concluido. Presiona la tecla C para iniciar el juego.
