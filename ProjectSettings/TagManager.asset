@@ -12,6 +12,7 @@ TagManager:
   - Tardilla2
   - mission1
   - mission2
+  - Enemy
   layers:
   - Default
   - TransparentFX

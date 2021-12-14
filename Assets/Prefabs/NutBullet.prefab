@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6816309259051989633}
   - component: {fileID: 5285520112963380743}
   - component: {fileID: 8908816545332521577}
+  - component: {fileID: 2070290294105156358}
+  - component: {fileID: -4958830269028948135}
   m_Layer: 0
   m_Name: NutBullet
   m_TagString: Untagged
@@ -112,3 +114,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &2070290294105156358
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5014926788687584084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5623691753684549296, guid: bab83da288d7c064782407a0f1af5a17, type: 3}
+--- !u!135 &-4958830269028948135
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5014926788687584084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.49067494
+  m_Center: {x: 0, y: 0, z: 0}

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     short mission = 0;
     short contMush = 0;
+
+    GameObject dad, son, dad_cave, nuts;
     
     void Awake(){
         if(PlayerController.playCont == null){
@@ -44,7 +46,13 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        dad = GameObject.Find("Squirrel_Dad");
+        son = GameObject.Find("Squirrel_Son");
+        dad_cave = GameObject.Find("Squirrel_Dad_Cave");
+        nuts = GameObject.Find("Nuts");
         
+        dad_cave.SetActive(false);
+        nuts.SetActive(false);
     }
 
     
@@ -103,7 +111,7 @@ public class PlayerController : MonoBehaviour
                     GameObject dropObject = GameObject.Find(name);                   
                     Destroy(dropObject);
                     contMush++;
-                    if(contMush == 2){
+                    if(contMush == 5){
                         //missionFinished = true;                        
                         mission++;
                         prepareMission2(true);
@@ -136,44 +144,32 @@ public class PlayerController : MonoBehaviour
         if(name.Equals("Mine Cave") && mission == 2 && !missionFinished && canShoot){
             SceneManager.LoadScene(2);
             Vector3 vector = new Vector3(0, 2, -9);
-            this.transform.position = vector;  
-            //canShoot = true;
+            this.transform.position = vector;              
             canEnter = false;
         }
-        if(name.Equals("Exit") && missionFinished){
-            SceneManager.LoadScene(1);
+        if(name.Equals("Exit")){
+            canShoot = false;
+            missionFinished = true;
+
+            SceneManager.LoadScene(1);            
             Vector3 vector = new Vector3(57, 2, 66);
             Quaternion quaternion = new Quaternion(0, -90, 0, 1);
-            canShoot = false;
+
             this.transform.position = vector;
             this.transform.rotation = quaternion;
-
+            prepareMission2(false);
         }
     }
 
-    private void prepareMission2(bool state){        
-        GameObject dad = GameObject.Find("Squirrel_Dad");
-        GameObject son = GameObject.Find("Squirrel_Son");
+    private void prepareMission2(bool state){                
         dad.SetActive(!state);
         son.SetActive(!state);
-
+        
         GameObject mom = GameObject.Find("Squirrel_Mom");
-        mom.tag = "mission2";
-
-        GameObject dad_cave = GameObject.Find("Squirrel_Dad_Cave").GetComponent<GameObject>();
-        GameObject nuts = GameObject.Find("Nuts").GetComponent<GameObject>();
-        //dad_cave.enabled = state;
-        //nuts.enabled = state;
+        mom.tag = "mission2";        
 
         dad_cave.SetActive(state);
         nuts.SetActive(state);
-
-        /*
-        dad.enabled = !state;
-        son.enabled = !state;
-        dad_cave.enabled = state;
-        nuts.enabled = state;
-        */       
     }
 
     public static bool getStateShoot(){

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AtackPlayer : MonoBehaviour
 {   
     GameObject player;
-    float speed = 7;
+    float speed = 4;
 
     void Start(){
         player = GameObject.FindGameObjectWithTag("Player");
@@ -14,6 +14,7 @@ public class AtackPlayer : MonoBehaviour
     void Update(){
         Vector3 origen = transform.position;
         Vector3 destino = player.transform.position;
+        destino.y = origen.y;
 
         //destino.z -= 3.0f;       
 
