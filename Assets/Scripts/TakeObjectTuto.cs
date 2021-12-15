@@ -47,6 +47,17 @@ public class TakeObjectTuto : MonoBehaviour
         {
             Debug.Log(hit.collider.tag);
 
+            if(hit.collider.tag.Equals("Nut")){
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    string name = hit.collider.name;
+                    Destroy(GameObject.Find(name));
+
+                }
+
+            }
+
             if (hit.collider.tag.Equals("Ttortuga"))
             {
                 indexActual = 3;
