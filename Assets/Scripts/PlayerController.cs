@@ -51,14 +51,21 @@ public class PlayerController : MonoBehaviour
 
     
     void Start()
-    {
+    {   
+        
         dad = GameObject.Find("Squirrel_Dad");
         son = GameObject.Find("Squirrel_Son");
+        dad.SetActive(false);   // added for M2
+        son.SetActive(false);   // added for M2
+        /*
         dad_cave = GameObject.Find("Squirrel_Dad_Cave");
         nuts = GameObject.Find("Nuts");
         
         dad_cave.SetActive(false);
         nuts.SetActive(false);
+        */
+        
+
     }
 
     
@@ -66,82 +73,82 @@ public class PlayerController : MonoBehaviour
     {
         rayCast();
     }
-   
-    
+       
     float camX, camY, camZ;
     float distancia = 5.0f;
 
-    private void rayCast(){
-        camX = camReference.transform.position.x;
-        camY = camReference.transform.position.y;
-        camZ = camReference.transform.position.z;
-        Vector3 origen = camReference.transform.position;
-        Vector3 direccion = objDirectionRC.transform.forward;        
-        RaycastHit hit;
-        //Se emite el rayo y se comprueba la colision
-        if (Physics.Raycast(origen, direccion, out hit, distancia))
-        {
-            Debug.Log(hit.collider.tag);
-            string tag = hit.collider.tag;
-            string name = hit.collider.gameObject.name;
+private void rayCast(){
+    camX = camReference.transform.position.x;
+    camY = camReference.transform.position.y;
+    camZ = camReference.transform.position.z;
+    Vector3 origen = camReference.transform.position;
+    Vector3 direccion = objDirectionRC.transform.forward;        
+    RaycastHit hit;
+    //Se emite el rayo y se comprueba la colision
+    if (Physics.Raycast(origen, direccion, out hit, distancia))
+    {
+        Debug.Log(hit.collider.tag);
+        string tag = hit.collider.tag;
+        string name = hit.collider.gameObject.name;
 
-            if (tag.Equals("talkeable")){
-                textoCanvas.text = "Click izquierdo para interactuar";
+        if (tag.Equals("talkeable")){
+            textoCanvas.text = "Click izquierdo para interactuar";
+            canTalk = true;
+
+            /*
+            if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
+            {    
+                setDialogObj(name);                    
+            }*/
+        }
+        else if (tag.Equals("mission1") && missionFinished==false){            
+            if(name.Contains("Mushroom") && mission == 1){
+                textoCanvas.text = "Click izquierdo para tomar";   
+                canDrop = true;             
+                if (Input.GetMouseButtonDown(0))    // Click Izquierdo
+                {                      
+                    canDrop = false;
+                    // Buscar el objeto que tomo
+                    GameObject dropObject = GameObject.Find(name);                   
+                    Destroy(dropObject);
+                    contMush++;
+                    if(contMush == 5){                            
+                        mission++;
+                        missionFinished = true;
+                        // Desaparecemos las ardillas 
+                        prepareMission2(true);
+                    }
+                }
+            }
+            else{
                 canTalk = true;
-
-                /*
+                textoCanvas.text = "Click izquierdo para Interactuar";
                 if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
-                {    
+                {
                     setDialogObj(name);                    
-                }*/
+                }
             }
-            else if (tag.Equals("mission1") && missionFinished==false){
-                canTalk = true;
-                if(name.Contains("Mushroom") && mission == 1){
-                    textoCanvas.text = "Click izquierdo para tomar";   
-                    canDrop = true;             
-                    if (Input.GetMouseButtonDown(0))    // Click Izquierdo
-                    {                      
-                        canDrop = false;
-                        // Buscar el objeto que tomo
-                        GameObject dropObject = GameObject.Find(name);                   
-                        Destroy(dropObject);
-                        contMush++;
-                        if(contMush == 5){                            
-                            //mission++;
-                            missionFinished = true;
-                            // Desaparecemos las ardillas 
-                            //prepareMission2(true);
-                        }
-                    }
-                }
-                else{
-                    textoCanvas.text = "Click izquierdo para Interactuar";
-                    if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
-                    {
-                        setDialogObj(name);                    
-                    }
-                }
-            }  
+        }  
 
-            else if(tag.Equals("mission2") && mission == 2){
-                if(name == "Nuts"){
-                    textoCanvas.text = "Click izquierdo para tomar";   
-                    if(Input.GetMouseButtonDown(0)){
-                        GameObject.Find(name).SetActive(false);
-                        canShoot = true;
-                    }                    
-                }
+        else if(tag.Equals("mission2") && mission == 2){
+            if(name == "Nuts"){
+                textoCanvas.text = "Click izquierdo para tomar";   
+                if(Input.GetMouseButtonDown(0)){
+                    GameObject.Find(name).SetActive(false);
+                    canShoot = true;
+                }                    
             }
+            else{
+                textoCanvas.text = "Click izquierdo para Interactuar";
+            }
+        }
 
-            else if(tag.Equals("Finish")) {
-                textoCanvas.text = "";
-                
-                
-            }
-            canvasDialogo.transform.LookAt(camReference.transform);
-        }            
-    }
+        else if(tag.Equals("Finish")) {
+            textoCanvas.text = "";               
+        }
+        canvasDialogo.transform.LookAt(camReference.transform);
+    }            
+}
 
     
     private void setDialogObj(string name){
@@ -203,5 +210,9 @@ public class PlayerController : MonoBehaviour
     public static bool getMissionState() {
         return playCont.missionFinished;
     }    
+
+    public static short getNumberMission(){
+        return playCont.mission;
+    }
 
 }
