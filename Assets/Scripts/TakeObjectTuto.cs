@@ -39,7 +39,7 @@ public class TakeObjectTuto : MonoBehaviour
         
         Vector3 origen = reference.transform.position;
         Vector3 direccion = transform.forward;
-        float duracion = 0.1f;
+        float duracion = 0.1f;        
 
         RaycastHit hit;
         //Se emite el rayo y se comprueba la colision
@@ -120,6 +120,14 @@ public class TakeObjectTuto : MonoBehaviour
                     texto.text = interacciones.getDatosMensaje(indexActual).dialogos;
                 }
 
+            }
+
+            // Agregar un nuevo tag llamado "Nut" y asignarselo a las bellotas
+            if(hit.collider.tag.Equals("Nut")){
+                if(Input.GetMouseButtonDown(0)){
+                    string name = hit.collider.name;
+                    Destroy(GameObject.Find(name));
+                }                
             }
 
         }
