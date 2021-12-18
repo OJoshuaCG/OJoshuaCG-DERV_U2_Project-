@@ -7131,7 +7131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1963075260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7568a862e3ae4b84397b2464e7e7b5f0, type: 3}
+  m_Script: {fileID: 11500000, guid: a616a0a4e2bae434faf9776119718caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogo: {fileID: 11400000, guid: d06c88181e3574a419fb56e0b4008c12, type: 2}
