@@ -48,14 +48,21 @@ public class PlayerController : MonoBehaviour
 
     
     void Start()
-    {
+    {   
+        
         dad = GameObject.Find("Squirrel_Dad");
         son = GameObject.Find("Squirrel_Son");
+        dad.SetActive(false);   // added for M2
+        son.SetActive(false);   // added for M2
+        /*
         dad_cave = GameObject.Find("Squirrel_Dad_Cave");
         nuts = GameObject.Find("Nuts");
         
         dad_cave.SetActive(false);
         nuts.SetActive(false);
+        */
+        
+
     }
 
     
@@ -91,8 +98,7 @@ private void rayCast(){
                 setDialogObj(name);                    
             }*/
         }
-        else if (tag.Equals("mission1") && missionFinished==false){
-            canTalk = true;
+        else if (tag.Equals("mission1") && missionFinished==false){            
             if(name.Contains("Mushroom") && mission == 1){
                 textoCanvas.text = "Click izquierdo para tomar";   
                 canDrop = true;             
@@ -104,14 +110,15 @@ private void rayCast(){
                     Destroy(dropObject);
                     contMush++;
                     if(contMush == 5){                            
-                        //mission++;
+                        mission++;
                         missionFinished = true;
                         // Desaparecemos las ardillas 
-                        //prepareMission2(true);
+                        prepareMission2(true);
                     }
                 }
             }
             else{
+                canTalk = true;
                 textoCanvas.text = "Click izquierdo para Interactuar";
                 if (Input.GetMouseButtonDown(0) && canTalk)    // Click Izquierdo
                 {
@@ -127,6 +134,9 @@ private void rayCast(){
                     GameObject.Find(name).SetActive(false);
                     canShoot = true;
                 }                    
+            }
+            else{
+                textoCanvas.text = "Click izquierdo para Interactuar";
             }
         }
 
@@ -197,5 +207,9 @@ private void rayCast(){
     public static bool getMissionState() {
         return playCont.missionFinished;
     }    
+
+    public static short getNumberMission(){
+        return playCont.mission;
+    }
 
 }

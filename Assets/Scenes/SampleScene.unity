@@ -928,7 +928,7 @@ MonoBehaviour:
   objDirectionRC: {fileID: 809943909}
   canShoot: 0
   missionFinished: 0
-  mission: 1
+  mission: 2
 --- !u!1001 &261708294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3462,6 +3462,10 @@ PrefabInstance:
       value: Squirrel_Son
       objectReference: {fileID: 0}
     - target: {fileID: 100054, guid: 265ee6fac4cc17345b23403e90e2ba45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: 265ee6fac4cc17345b23403e90e2ba45, type: 3}
       propertyPath: m_TagString
       value: talkeable
       objectReference: {fileID: 0}
@@ -3752,7 +3756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398302258751871310, guid: 8605272463851daa993f0dd77fc03ada, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.1
+      value: 110.8
       objectReference: {fileID: 0}
     - target: {fileID: 3398302258751871310, guid: 8605272463851daa993f0dd77fc03ada, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3760,7 +3764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398302258751871310, guid: 8605272463851daa993f0dd77fc03ada, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.7
+      value: 118.2
       objectReference: {fileID: 0}
     - target: {fileID: 3398302258751871310, guid: 8605272463851daa993f0dd77fc03ada, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7534,6 +7538,10 @@ PrefabInstance:
       value: Squirrel_Dad
       objectReference: {fileID: 0}
     - target: {fileID: 100054, guid: 265ee6fac4cc17345b23403e90e2ba45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: 265ee6fac4cc17345b23403e90e2ba45, type: 3}
       propertyPath: m_TagString
       value: talkeable
       objectReference: {fileID: 0}
@@ -8085,8 +8093,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107252672}
-  m_LocalRotation: {x: -0.61981404, y: 0.19754061, z: -0.3332952, w: 0.6824388}
-  m_LocalPosition: {x: 85.95, y: 1.667, z: 64.577}
+  m_LocalRotation: {x: -0.3840205, y: -0.1539678, z: -0.5897312, w: 0.69356996}
+  m_LocalPosition: {x: 50.5, y: 1.5, z: 67.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2080869120}
@@ -8094,7 +8102,7 @@ Transform:
   - {fileID: 1856329188}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: -45.585, y: 77.32, z: -89.223}
+  m_LocalEulerAnglesHint: {x: -45.585, y: 20, z: -89.223}
 --- !u!1001 &1949016502765877577
 PrefabInstance:
   m_ObjectHideFlags: 0

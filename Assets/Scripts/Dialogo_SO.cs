@@ -66,40 +66,28 @@ public class Dialogo_SO : MonoBehaviour
 
         }
 
-        if(Input.GetKeyDown(KeyCode.C) && cambioEscena == true)
-        {
-            SceneManager.LoadScene(1);
-        }
+        // if(Input.GetKeyDown(KeyCode.C) && cambioEscena == true)
+        // {
+        //     SceneManager.LoadScene(1);
+        // }
     }
 
     IEnumerator mostrarTexto()
     {
-
-        bool estado;
-
-        estado = true;
-
+        bool estado = true;
+        
         while (estado == true)
         {
-
             float largo = texto.text.Length;
-
             if (texto.maxVisibleCharacters < largo)
-            {
                 texto.maxVisibleCharacters += 1;
-            }
-
-            Debug.Log("Ejecuci�n Corrutina");
+                        
             yield return new WaitForSeconds(0.05f);
 
             if(texto.maxVisibleCharacters == largo)
-            {
-                estado = false;
-            }
-
+                estado = false;            
         }
-
-        Debug.Log("Corrutina detenida");
+        
         StopCoroutine("mostrarTexto");
     }
 }
