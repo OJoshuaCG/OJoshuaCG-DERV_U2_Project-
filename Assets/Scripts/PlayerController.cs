@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {   
     public static PlayerController playCont;
-
+    
+    // Variables
+    #region 
     [SerializeField]
     GameObject dialogController;
 
@@ -34,9 +36,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     short mission = 0;
     short contMush = 0;
-
-    GameObject dad, son, dad_cave, nuts;
     
+    GameObject dad, son, dad_cave, nuts;
+    #endregion
+
     void Awake(){
         if(PlayerController.playCont == null){
             PlayerController.playCont = this;

@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
-{   
-    
+{
 
+    [SerializeField]
+    short numScene = 0;
     public void IniciarJuego(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(numScene);
     }
 }

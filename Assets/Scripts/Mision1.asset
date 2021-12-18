@@ -15,7 +15,7 @@ MonoBehaviour:
   mensaje:
   - ID: 0
     dialogos: "Estoy en contra de la sopa de tortuga. \xBFPodr\xEDas recolectar 5
-      hongos para nuestro platillo? \nVuelve aqu\xED cuando los tengas y presion
+      hongos para nuestro platillo? \n<br>Vuelve aqu\xED cuando los tengas y presiona
       c para continuar :)\n"
   - ID: 1
     dialogos: Lo has logrado. Estamos agradecidas!!!
